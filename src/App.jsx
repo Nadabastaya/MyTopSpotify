@@ -14,7 +14,7 @@ function App() {
   const navigateTo = useNavigate()
 
 
-  const SPOTIFY_URL = `https://accounts.spotify.com/authorize?client_id=${import.meta.env.VITE_CLIENT_ID}&response_type=code&redirect_uri=${import.meta.env.VITE_REDIRECT_URI}&scope=user-read-private`
+  const SPOTIFY_URL = `https://accounts.spotify.com/authorize?client_id=${import.meta.env.VITE_CLIENT_ID}&response_type=code&redirect_uri=${import.meta.env.VITE_REDIRECT_URI}&scope=user-read-private user-top-read`
 
   const authUser = useCallback(async (spotifyCode) => {
     try {

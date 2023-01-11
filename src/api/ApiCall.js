@@ -15,7 +15,7 @@ export const authCall = async (code) => {
         }
 
         const encodeParams = Object.keys(params).map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(params[key])).join("&")
-
+        console.log(encodeParams)
         const spotifyCall = await axios.post('https://accounts.spotify.com/api/token', encodeParams, {
             headers: {
                 Authorization: 'Basic ' + import.meta.env.VITE_CLIENT_BASE_64,

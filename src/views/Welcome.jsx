@@ -36,7 +36,7 @@ function Welcome() {
 
     return (
         <div>
-            {user}
+            {/* {user} */}
             <button onClick={handleSpotifyLogout}>Log Out</button>
             {/* <button onClick={handleSpotifyTopSongs()}>My Top Songs</button>
             <button onClick={handleSpotifyTopArtists()}>My Top Artists</button> */}
