@@ -11,6 +11,7 @@ import { Provider } from 'react-redux'
 import Welcome from './views/Welcome'
 import TopSongs from './views/TopSongs'
 import TopArtists from './views/TopArtists'
+import SimilarArtists from './views/SimilarArtists'
 
 const router = createBrowserRouter([
   {
@@ -26,8 +27,12 @@ const router = createBrowserRouter([
     element: <TopSongs/>
   },
   {
-    path: "top-artists",
+    path: "/top-artists",
     element: <TopArtists />
+  },
+  {
+    path: "/similar-artists",
+    element: <SimilarArtists />
   }
   
 ])
@@ -36,6 +41,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
     <Provider store={ store }>
       <RouterProvider router={ router } />
-      {/* <App /> */}
     </Provider>,
 )
