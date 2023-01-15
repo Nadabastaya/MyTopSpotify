@@ -97,6 +97,7 @@ const Container = styled.div`
     flex-direction: column;
     width: 1000px;
     gap: 10px;
+    padding-bottom: 20px;
 `
 
 const Title = styled.span`
