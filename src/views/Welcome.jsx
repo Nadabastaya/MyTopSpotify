@@ -1,13 +1,12 @@
-import useFetch from '../api/useFetch'
 import { useSelector } from 'react-redux'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { getAuthorize } from '../redux/slices/selectors/selector'
-import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
-import Nav from '../components/Nav'
+import axios from 'axios'
+
 import CardWelcome from '../components/CardWelcome'
-import styled from 'styled-components'
-import imgHeader from '../assets/img/welcome-header-3.jpg'
+import { Container, WelcomeBody, WelcomeTitle, WelcomeText, CardContainer } from '../styled/Welcome'
+
 
 function Welcome() {
     const [user, setUser] = useState("")
@@ -31,12 +30,9 @@ function Welcome() {
         userData()
     }, [])
 
-
     const handleSpotifyLogout = () => {
         window.location.replace('http://127.0.0.1:5173/')
     }
-
-
 
     return (
         <Container>
@@ -52,53 +48,13 @@ function Welcome() {
                 <CardWelcome link="/top-artists" name="Top Artists" />
                 <CardWelcome link="/similar-artists" name="Similar Artists" />
                 </CardContainer>
-
                 {/* <div>
                     <button onClick={handleSpotifyLogout}>Log Out</button>
                 </div> */}
             </WelcomeBody>
-
-
-
         </Container>
     )
 }
 
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: 1000px;
-    height: 100vh;
-`
-
-const WelcomeBody = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 1000px;
-`
-
-const WelcomeTitle = styled.span`
-    font-size: 60px;
-    font-family: Tahoma;  
-    text-transform: uppercase;
-    text-align: center;
-    padding-top: 50px;
-    padding-bottom: 50px; 
-    color: #FFF;
-    font-weight: bold;
-`
-
-const WelcomeText = styled.span`
-    color: #a2a2a2;
-    font-size: 20px;
-    padding: 15px
-`
-
-const CardContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-`
 
 export default Welcome
