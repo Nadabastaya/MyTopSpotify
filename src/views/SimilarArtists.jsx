@@ -31,8 +31,13 @@ function SimilarArtists()   {
     }
 
     const render = () =>    {
-        return artists.map(a => (
-            <CardArtists img={a?.images[0].url} name={a?.name} />
+        
+        return artists.map(a =>  (
+            
+            a?.images[0] ? 
+                <CardArtists img={a?.images[0].url} name={a?.name} /> 
+            :
+            <CardArtists  name={a?.name} />
         ))
     }
 
@@ -60,6 +65,7 @@ const Container = styled.div`
     flex-direction: column;
     width: 1000px;
     padding-bottom: 20px;
+    height: 100vh;
 `
 
 const Title = styled.span`
@@ -75,7 +81,6 @@ const Title = styled.span`
 const ArtistsContainer = styled.div`
     display: flex;
     flex-direction: row;
-    
     flex-wrap: wrap;
 `
 const FormContainer = styled.form`

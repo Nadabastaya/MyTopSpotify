@@ -17,6 +17,10 @@ const Nav = () =>  {
                 <div>👨‍🎤</div>
                 Similar Artists
             </Items>
+            <Items to="/welcome">
+                <div>🏘️</div>
+                Home
+            </Items>
         </NavContainer>
     )
 }

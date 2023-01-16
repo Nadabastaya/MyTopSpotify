@@ -1,12 +1,15 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
 
 const CardArtists = (props) => {
     return (
         <CardWrapper>
             <CardHeader>
-               <CardImage src={props.img} />
+               {props.img ?
+                    <CardImage src={props.img}  />
+                    :
+                    <CardAlt />
+                }
             </CardHeader>
             <CardBody>
                 <CardLink>
@@ -37,6 +40,13 @@ const CardHeader = styled.header`
 const CardImage = styled.img`
     width: 180px;
     border-radius: 50%;
+    padding: 5px;
+    aspect-ratio: 1/1;
+    background-color: #171717;
+`
+const CardAlt = styled.div`
+    background-color: #171717
+    width: 180px;
     padding: 5px;
     aspect-ratio: 1/1;
 `

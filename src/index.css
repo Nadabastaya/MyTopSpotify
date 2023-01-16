@@ -1,11 +1,8 @@
 :root {
   background-color: #121212;
   font-family: 'Helvetica';
-  background: rgb(18, 18, 18);
-  background: -moz-linear-gradient(0deg, rgba(18, 18, 18, 1) 75%, rgba(58, 22, 27, 1) 85%, rgba(185, 33, 54, 1) 100%);
-  background: -webkit-linear-gradient(0deg, rgba(18, 18, 18, 1) 75%, rgba(58, 22, 27, 1) 85%, rgba(185, 33, 54, 1) 100%);
-  background: linear-gradient(0deg, rgba(18, 18, 18, 1) 75%, rgba(58, 22, 27, 1) 85%, rgba(185, 33, 54, 1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#121212", endColorstr="#b92136", GradientType=1);
+ 
+
 }
 
 body {
@@ -13,7 +10,12 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-
+  background: rgb(18, 18, 18);
+  background: -moz-linear-gradient(0deg, rgba(18, 18, 18, 1) 75%, rgba(58, 22, 27, 1) 85%, rgba(185, 33, 54, 1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(18, 18, 18, 1) 75%, rgba(58, 22, 27, 1) 85%, rgba(185, 33, 54, 1) 100%);
+  background: linear-gradient(0deg, rgba(18, 18, 18, 1) 75%, rgba(58, 22, 27, 1) 85%, rgba(185, 33, 54, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#121212", endColorstr="#b92136", GradientType=1);
+  
 }
 
 /* :root {

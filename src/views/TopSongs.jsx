@@ -72,7 +72,11 @@ function TopSongs() {
             <Nav />
             <Container>
             <Title>Top Songs</Title>
-            <TopsNav long_term={() => { getTopSongs('long_term') }} medium_term={() => { getTopSongs('medium_term') }} short_term={() => { getTopSongs('short_term') }}/>
+            <TopsNav 
+                long_term={() => { getTopSongs('long_term') }} 
+                medium_term={() => { getTopSongs('medium_term') }} 
+                short_term={() => { getTopSongs('short_term') }}
+            />
        
             
             <SongsContainer>
@@ -97,7 +101,7 @@ const Container = styled.div`
     flex-direction: column;
     width: 1000px;
     gap: 10px;
-    padding-bottom: 20px;
+    height: 100vh;
 `
 
 const Title = styled.span`
