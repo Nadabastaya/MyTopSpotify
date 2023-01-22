@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-function useFetch(url, type, term, token)  {
+function useFetch(type, term, token)  {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`${url}/${type}?time_range=${term}`, {
+        axios.get(`https://api.spotify.com/v1/me/top${type}?time_range=${term}`, {
             headers:    {
                 Authorization: `Bearer ${token}`
             }
@@ -21,7 +21,7 @@ function useFetch(url, type, term, token)  {
         .finally(() =>  {
             setLoading(false)
         })
-    }, [url])
+    }, [])
 
     return { data, loading, error }
 }

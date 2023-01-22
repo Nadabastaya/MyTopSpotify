@@ -1,38 +1,57 @@
 import { useEffect, useState } from "react"
 import { getAuthorize } from '../redux/slices/selectors/selector'
 import { useSelector } from "react-redux";
+
+import { useGetSongsQuery } from '../redux/apis/topsApi'
+
 import axios from "axios"
 
+import useFetch from '../api/useFetch'
 import TopsNav from '../components/TopsNav'
 import Nav from '../components/Nav'
-import { Container, 
-        Title, 
-        SongsContainer, 
-        NumberSong, 
-        ImageSong, 
-        Song, 
-        Artist, 
-        Album, 
-        Duration 
-    } from '../styled/TopSongs'
+import {
+    Container,
+    Title,
+    SongsContainer,
+    NumberSong,
+    ImageSong,
+    Song,
+    Artist,
+    Album,
+    Duration
+} from '../styled/TopSongs'
 
 function TopSongs() {
-
-    const { value } = useSelector(getAuthorize)
+    const [term, setTerm] = useState('long_term')
     const [topSong, setTopSong] = useState([])
 
-    const getTopSongs = async (term) => {
-        try {
-            const { data } = await axios.get(`https://api.spotify.com/v1/me/top/tracks?time_range=${term}`, {
-                headers: {
-                    Authorization: `Bearer ${value.access_token}`,
-                }
-            })
-            console.log(data.items)
-            setTopSong(data.items)
-        } catch (error) {
-            console.log(error)
+    const { data: songs = [], isLoading, isSuccess, isError } = useGetSongsQuery(term)
+
+
+    
+    
+    useEffect(() => {
+        if (isSuccess && songs) {
+            setTopSong(songs.items)
         }
+    }, [isSuccess, songs, isError])
+
+    const longTerm = () => {
+        if (term === 'long_term') return
+        setTerm('long_term')
+        setTopSong(songs?.items)
+    }
+
+    const mediumTerm = () => {
+        if (term === 'medium_term') return
+        setTerm('medium_term')
+        setTopSong(songs?.items)
+    }
+
+    const shortTerm = () => {
+        if (term === 'short_term') return
+        setTerm('short_term')
+        setTopSong(songs?.items)
     }
 
     function convertMinutes(ms) {
@@ -41,12 +60,11 @@ function TopSongs() {
         return minutes + ':' + (seconds < 10 ? 0 : '') + seconds
     }
 
-    useEffect(() => {
-        getTopSongs('long_term')
-    }, [])
-
     const render = () => {
         let index = 0
+
+        /* if (topSong === undefined) return */
+
         return topSong.map(tp => (
             <SongsContainer key={tp?.id}>
                 <NumberSong>{index += 1}</NumberSong>
@@ -73,21 +91,22 @@ function TopSongs() {
         <div>
             <Nav />
             <Container>
-            <Title>Top Songs</Title>
-            <TopsNav 
-                long_term={() => { getTopSongs('long_term') }} 
-                medium_term={() => { getTopSongs('medium_term') }} 
-                short_term={() => { getTopSongs('short_term') }}
-            />
-            <SongsContainer>
-                <NumberSong>#</NumberSong>
-                <ImageSong />
-                <Song>Title</Song>
-                <Album>Album</Album>
-                <Duration>Duration</Duration>
-            </SongsContainer>
-                { render() }
-        </Container >
+                <Title>Top Songs</Title>
+                <TopsNav
+                    long_term={longTerm}
+                    medium_term={mediumTerm}
+                    short_term={shortTerm}
+                />
+                <SongsContainer>
+                    <NumberSong>#</NumberSong>
+                    <ImageSong />
+                    <Song>Title</Song>
+                    <Album>Album</Album>
+                    <Duration>Duration</Duration>
+                </SongsContainer>
+                { isLoading ? 'L o a d i n g' : render() }
+               
+            </Container >
         </div>
     )
 }

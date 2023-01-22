@@ -6,29 +6,38 @@ import TopsNav from '../components/TopsNav'
 import CardArtists from '../components/CardArtists'
 import Nav from '../components/Nav'
 import { Container, Title, ArtistsContainer } from '../styled/TopArtists'
+import { useGetArtistsQuery } from "../redux/apis/topsApi";
 
 function TopArtists() {
-
-    const { value } = useSelector(getAuthorize)
+    const [term, setTerm] = useState('long_term')
     const [topArtists, setTopArtists] = useState([])
 
-    const getTopArtists = async (term) => {
-        try {
-            const { data } = await axios.get(`https://api.spotify.com/v1/me/top/artists?time_range=${term}`, {
-                headers: {
-                    Authorization: `Bearer ${value.access_token}`,
-                }
-            })
-            console.log(data.items)
-            setTopArtists(data.items)
-        } catch (error) {
-            console.log(error)
+    const { data: artists = [], isLoading, isSuccess, isError } = useGetArtistsQuery(term)
+
+ 
+    useEffect(() => {
+        if (isSuccess && artists) {
+            setTopArtists(artists.items)
         }
+    }, [isSuccess, artists, isError])
+
+    const longTerm = () => {
+        if (term === 'long_term') return
+        setTerm('long_term')
+        setTopArtists(artists?.items)
     }
 
-    useEffect(() => {
-        getTopArtists('long_term')
-    }, [])
+    const mediumTerm = () => {
+        if (term === 'medium_term') return
+        setTerm('medium_term')
+        setTopArtists(artists?.items)
+    }
+
+    const shortTerm = () => {
+        if (term === 'short_term') return
+        setTerm('short_term')
+        setTopArtists(artists?.items)
+    }
 
     const render = () => {
         return topArtists.map(ta => (
@@ -42,9 +51,9 @@ function TopArtists() {
             <Container>
                 <Title>Top Artists</Title>
                 <TopsNav
-                    long_term={() => { getTopArtists('long_term') }}
-                    medium_term={() => { getTopArtists('medium_term') }}
-                    short_term={() => { getTopArtists('short_term') }}
+                    long_term={longTerm}
+                    medium_term={mediumTerm}
+                    short_term={shortTerm}
                 />
                 <ArtistsContainer>
                     {render()}
@@ -54,28 +63,4 @@ function TopArtists() {
     )
 }
 
-/* const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 1000px;
-    padding-bottom: 20px;
-    height: 100vh;
-`
-
-const Title = styled.span`
-    font-size: 60px;
-    font-family: Tahoma;  
-    text-transform: uppercase;
-    text-align: center;
-    padding-top: 50px;
-    padding-bottom: 50px; 
-    color: #FFF;
-    font-weight: bold;
-`
-const ArtistsContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    flex-wrap: wrap;
-` */
 export default TopArtists

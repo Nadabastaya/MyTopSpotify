@@ -27,7 +27,7 @@ const CardWrapper = styled.div`
     background-color: #171717;
     width: 225px;
     padding: 0 0 30px;
-    margin: 48px auto 0;
+    margin: 30px auto 0;
     text-align: center;
     border-radius: 10px;
 `
