@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react"
-import { getAuthorize } from '../redux/slices/selectors/selector'
-import { useSelector } from "react-redux";
-
 import { useGetSongsQuery } from '../redux/apis/topsApi'
-
-import axios from "axios"
-
-import useFetch from '../api/useFetch'
 import TopsNav from '../components/TopsNav'
 import Nav from '../components/Nav'
 import {
@@ -27,9 +20,6 @@ function TopSongs() {
 
     const { data: songs = [], isLoading, isSuccess, isError } = useGetSongsQuery(term)
 
-
-    
-    
     useEffect(() => {
         if (isSuccess && songs) {
             setTopSong(songs.items)
@@ -62,8 +52,6 @@ function TopSongs() {
 
     const render = () => {
         let index = 0
-
-        /* if (topSong === undefined) return */
 
         return topSong.map(tp => (
             <SongsContainer key={tp?.id}>
@@ -104,8 +92,7 @@ function TopSongs() {
                     <Album>Album</Album>
                     <Duration>Duration</Duration>
                 </SongsContainer>
-                { isLoading ? 'L o a d i n g' : render() }
-               
+                { render() }
             </Container >
         </div>
     )

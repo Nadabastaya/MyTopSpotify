@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const CardWelcome = (props) => {
     return (
-        <CardWrapper>
+        <CardWrapper >
             <CardHeader>
                <CardImage src="https://i.scdn.co/image/ab6761610000e5ebd84fd6ae9ccfc6206ea6711e" />
             </CardHeader>
@@ -13,7 +13,7 @@ const CardWelcome = (props) => {
                     {props.name}
                 </CardLink>
                 <CardText>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, beatae.
+                    {props.text}
                 </CardText>
             </CardBody>
         </CardWrapper>

@@ -2,9 +2,16 @@ import { useState } from "react"
 import { getAuthorize } from '../redux/slices/selectors/selector'
 import { useSelector } from "react-redux";
 import axios from "axios";
+
 import CardArtists from '../components/CardArtists'
 import Nav from '../components/Nav'
-import { Container, Title, ArtistsContainer, FormContainer, TextBox, Button } from '../styled/SimilarArtists'
+import { 
+    Container, 
+    Title, 
+    ArtistsContainer, 
+    FormContainer, 
+    TextBox, 
+    Button } from '../styled/SimilarArtists'
 
 function SimilarArtists()   {
     const [artistKey, setArtistKey] = useState("")

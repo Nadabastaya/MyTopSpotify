@@ -12,11 +12,13 @@ import Welcome from './views/Welcome'
 import TopSongs from './views/TopSongs'
 import TopArtists from './views/TopArtists'
 import SimilarArtists from './views/SimilarArtists'
+import ErrorPage from './components/ErrorPage'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
+    element: <App />,
+    errorElement: <ErrorPage/>
   },
   {
     path: "/welcome",

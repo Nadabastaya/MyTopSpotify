@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react"
-import { getAuthorize } from '../redux/slices/selectors/selector'
-import { useSelector } from "react-redux";
-import axios from "axios"
 import TopsNav from '../components/TopsNav'
 import CardArtists from '../components/CardArtists'
 import Nav from '../components/Nav'
@@ -13,7 +10,6 @@ function TopArtists() {
     const [topArtists, setTopArtists] = useState([])
 
     const { data: artists = [], isLoading, isSuccess, isError } = useGetArtistsQuery(term)
-
  
     useEffect(() => {
         if (isSuccess && artists) {

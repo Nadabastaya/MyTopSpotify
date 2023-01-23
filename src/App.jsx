@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { authCall } from './api/ApiCall'
 import { authorize } from './redux/slices/authorize/authorizeSlice'
-import styled from 'styled-components'
 import { Container, Title, Text, Button } from './styled/App'
 import './App.css'
 
@@ -36,18 +35,14 @@ function App() {
     window.location.replace(SPOTIFY_URL)
   }
 
-  const handleSpotifyLogout = () => {
-    window.location.replace(import.meta.env.VITE_REDIRECT_URI)
-  }
 
   return (
     <Container className="App">
-      <Title>MY TOP SPOTIFY</Title>
+      <Title>Top-pify</Title>
       <Text>
         Do you want to know which are the songs and artists that you have listened to the most? Sign in with your spotify account to MyTopSpotify to find out!
       </Text>
       <Button onClick={handleSpotifyLogin}>Sign In</Button>
-      {/* <button onClick={handleSpotifyLogout}>Log Out</button> */}
     </Container>
   )
 }
